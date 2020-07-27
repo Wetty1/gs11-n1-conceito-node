@@ -30,7 +30,6 @@ app.post("/repositories", (request, response) => {
   if(!isUuid(project.id))
     response.status(400).json({ error: "Project malformed"})
 
-  console.log(project)
   repositories.push(project)
 
   response.status(200).json(project)
@@ -69,10 +68,9 @@ app.delete("/repositories/:id", (request, response) => {
     return response.status(400).json({ error: "Repositorie not found."})
   }
 
-  console.log(repositories[repositoriesIndex])
   repositories.splice(repositoriesIndex, 1)
 
-  return response.status(200).send()
+  return response.status(204).send()
 });
 
 app.post("/repositories/:id/like", (request, response) => {
